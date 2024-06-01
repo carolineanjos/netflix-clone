@@ -14,7 +14,7 @@ const categories = [
     {
         name: "TopRated",
         title: "Populares",
-        path: `//movie/top_rated?api_key=${API_KEY}&language=en-US`,
+        path: `/movie/top_rated?api_key=${API_KEY}&language=en-US`,
     },
     {
         name: "TopRated",
@@ -24,16 +24,28 @@ const categories = [
     {
         name: "comedy",
         title: "Comédias",
-        path: `discover/movie?api_key=${API_KEY}&with_genres=35`,
+        path: `/discover/movie?api_key=${API_KEY}&with_genres=35`,
     },
     {
         name: "romances",
         title: "Romances",
-        path: `discover/movie?api_key=${API_KEY}&with_genres=10749`,
+        path: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
     },
     {
         name: "crimes",
         title: "Crimes",
-        path: `discover/movie?api_key=${API_KEY}&with_genres=80`,
+        path: `/discover/movie?api_key=${API_KEY}&with_genres=80`,
     }
 ]
+
+export const getMovies = async (path) => {
+    try {
+        let url = `https://api.themoviedb.org/3/${path}`;
+    
+        const response = await fetch(url);
+        return await response.json();
+         
+    } catch (error) {
+        console.log("error", error);
+    }
+}

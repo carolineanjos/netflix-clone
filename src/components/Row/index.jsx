@@ -2,6 +2,7 @@ import movieTrailer from "movie-trailer";
 import ReactPlayer from "react-player";
 import { useEffect, useState } from "react";
 import { getMovies } from "../../api";
+import { FixedSizeList as List } from "react-window";
 import './styles.css';
 
 
@@ -30,8 +31,7 @@ export const Row = ({ title, path, isLarge }) => {
   const fetchMovies = async (_path) => {
     try {
       const data = await getMovies(_path);
-      console.log("data", data);
-      setMovies(data?.results);
+      setMovies(() => data?.results);
 
     } catch (error) {
       console.log("error", error);
@@ -42,20 +42,32 @@ export const Row = ({ title, path, isLarge }) => {
     fetchMovies(path);
   }, [path]);
 
+  const Column = ({ index, style }) => (
+    <div style={!isLarge ? style : { ...style, width: "416px" }}>
+      <img
+        className={!isLarge ? "movie-card" : "movie-card-large"}
+        onClick={() => handleOnClick(movies[index])}
+        key={movies[index].id}
+        src={`${imageHost}${isLarge ? movies[index].backdrop_path : movies[index].poster_path}`}
+        alt={movies[index].title}
+      />
+    </div>
+  );
+
   return (
     <div className="row-container">
       <h2 className="row-header">{title}</h2>
       <div className="row-cards">
-        {movies?.map((movie) => {
-          return (
-            <img
-              className={!isLarge ? "movie-card" : "movie-card-large"}
-              onClick={() => handleOnClick(movie)}
-              key={movie.id}
-              src={`${imageHost}${isLarge ? movie.backdrop_path : movie.poster_path}`}
-              alt={movie.title} />
-          );
-        })}
+        <List
+          className="list-container"
+          height={isLarge ? 300 : 180}
+          itemCount={movies?.length}
+          itemSize={isLarge ? 416 : 100}
+          layout="horizontal"
+          width={1400}
+        >
+          {Column}
+        </List>
       </div>
       {trailerUrl && <ReactPlayer url={trailerUrl} playing={true} />}
     </div>

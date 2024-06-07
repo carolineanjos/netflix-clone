@@ -1,6 +1,8 @@
+/* row */
 .row-container {
-  margin-left: 20px;
+  margin-left: 15px;
   margin-top: 20px;
+  position: relative;
   color: white;
 }
 
@@ -8,7 +10,7 @@
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .list-container {
@@ -19,29 +21,72 @@
   display: none;
 }
 
+/* movie card */
+
 .movie-card {
-  width: 100%;
-  max-height: 300px;
-  margin: 0 15px 10px 0;
-  border-radius: 8px;
-  transition: transform 450ms;
-  object-fit: contain;
+  width: 100px;
+  height: 180px;
 }
 
 .movie-card-large {
   width: 400px;
   height: 250px;
-  margin: 0 15px 10px 0;
-  border-radius: 8px;
+}
+
+.movie-card, .movie-card-large {
   transition: transform 450ms;
   cursor: pointer;
   object-fit: contain;
+
 }
 
-.movie-card:hover {
+.movie-card:hover, .movie-card-large:hover {
   transform: scale(1.08);
 }
 
-.movie-card-large:hover {
-  transform: scale(1.08);
+/* arrow button */
+
+.arrow-left-button-cards,
+.arrow-right-button-cards {
+  height: 180px;
+
+}
+
+.arrow-left-button-large-cards,
+.arrow-right-button-large-cards {
+  height: 250px;
+
+}
+
+.arrow-left-button-cards,
+.arrow-left-button-large-cards,
+.arrow-right-button-cards,
+.arrow-right-button-large-cards {
+  position: absolute;
+  color: transparent;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.5s;
+  z-index: 4;
+}
+
+.arrow-right-button-cards, 
+.arrow-right-button-large-cards {
+  right: 10px;
+}
+
+.arrow-left-button-cards:hover,
+.arrow-left-button-large-cards:hover {
+  
+  background: rgba(11, 9, 9, 0.248);
+  cursor: pointer;
+  color: #eaeaea;
+}
+
+.arrow-right-button-cards:hover,
+.arrow-right-button-large-cards:hover {
+  background: rgba(11, 9, 9, 0.248);
+  cursor: pointer;
+  color: #eaeaea;
 }

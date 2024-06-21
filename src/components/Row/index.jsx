@@ -18,7 +18,7 @@ export const Row = ({ title, path, isLarge }) => {
   const ref = useRef();
 
   const movieCardWidth = isLarge ? 416 : 110;
-  const listWidth = 1470;
+  const listWidth = 1900;
 
 
   const handleOnClick = (movie) => {

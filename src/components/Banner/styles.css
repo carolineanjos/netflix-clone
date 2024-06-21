@@ -28,6 +28,7 @@
 
 .banner-button-container{
   display: flex;
+  align-items: center;
 }
 
 .banner-button {
@@ -38,8 +39,7 @@
   font-weight: 700;
   border-radius: 0.2vw;
   padding: 0.5rem 2rem;
-  margin-top: 1rem;
-  margin-left: 2rem;
+  margin: 1rem 1rem 1rem 0;
   background-color: rgba(51, 51, 51, 0.5);
 }
 
@@ -49,3 +49,23 @@
   transition: all 0.2s;
 }
 
+@media (min-width: 350px) and (max-width: 800px) {
+  .banner-container {
+    height: 250px;
+  }
+  .banner-content {
+    padding-top: 70px ;
+  }
+  .banner-title {
+    font-size: 1.5rem;
+  }
+
+  .banner-button {
+    padding: 0.2rem 1rem;
+    font-size: 10px;
+  }
+
+  .banner-description {
+    font-size: 0.5rem;
+  }
+}
